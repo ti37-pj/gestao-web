@@ -1,5 +1,5 @@
 import Produtos from "./Paginas/Produtos";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -9,18 +9,16 @@ import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
-import Badge from '@mui/material/Badge';
+import Home from '@mui/icons-material/Home';
 import DrawerItem from "./Componentes/DrawerItem";
+import TrendingUp from "@mui/icons-material/TrendingUp"
+import Person from "@mui/icons-material/Person";
+import Sell from "@mui/icons-material/Sell";
 
 
 const App = () => {
@@ -104,56 +102,72 @@ const App = () => {
       }));
 
     return (
-
-    <BrowserRouter>
-
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: 5,
-              ...(open && { display: 'none' }),
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-        <DrawerItem link="/produtos" open={open}  icon={<ShoppingCart/>} texto= "Produtos"/>
-        </List>
-       
-      </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        <main>
-            <Routes>
-                    <Route path="/produtos" element={<Produtos/>}></Route>
-            </Routes>
-        </main>
-      </Box>
-    </Box>
-    </BrowserRouter>  
-     );
+        <BrowserRouter>
+            <Box sx={{ display: 'flex' }}>
+                <CssBaseline />
+                    <AppBar position="fixed" open={open}>
+                        <Toolbar>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={handleDrawerOpen}
+                            edge="start"
+                            sx={{
+                            marginRight: 5,
+                            ...(open && { display: 'none' }),
+                        }}
+                        >
+                        <MenuIcon />
+                        </IconButton>
+                            <Typography variant="h6" noWrap component="div">
+                            Lelexo's Bar
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
+                    <Drawer variant="permanent" open={open}>
+                        <DrawerHeader>
+                            <IconButton onClick={handleDrawerClose}>
+                                {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                            </IconButton>
+                        </DrawerHeader> 
+                        <List>
+                            <DrawerItem link="/dashboard" open={open} icon={<Home/>} texto= "Dashboard"/>
+                        </List>               
+                        <List>
+                            <DrawerItem link="/produtos" open={open} icon={<ShoppingCart/>} texto= "Produtos"/>
+                        </List>
+                        <List>
+                            <DrawerItem link="/cupons" open={open} icon={<Sell/>} texto= "Cupons"/>
+                        </List>
+                        <List>
+                            <DrawerItem link="/funcionarios" open={open} icon={<Person/>} texto= "Funcioários"/>
+                        </List>
+                        <List>
+                            <DrawerItem link="/vendas" open={open} icon={<TrendingUp/>} texto= "Vendas"/>
+                        </List>
+                    </Drawer>
+                <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+                    <DrawerHeader />
+                        <main>
+                            <Routes>
+                                <Route path="/produtos" element={<Produtos/>}></Route>
+                            </Routes>
+                            <Routes>
+                                <Route path="/dashboard"></Route>
+                            </Routes>
+                            <Routes>
+                                <Route path="/cupons"></Route>
+                            </Routes>
+                            <Routes>
+                                <Route path="/funcionarios"></Route>
+                            </Routes>
+                            <Routes>
+                                <Route path="/vendas"></Route>
+                            </Routes>
+                        </main>
+                </Box>
+            </Box>
+        </BrowserRouter>  
+    );
 }
- 
-
-               
-
 export default App;
