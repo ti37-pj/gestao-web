@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const Produtos = () => {
 
-    const [produtos, mudaProdutos] = React.useState([])
+    const [produtos, mudaProdutos] = React.useState([1])
 
     axios.get("http://10.60.46.31:3001/produtos/busca_todos")
 
