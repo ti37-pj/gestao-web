@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import * as React from 'react';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -9,7 +9,7 @@ import Badge from '@mui/material/Badge';
 const DrawerItem = (props) => {
     return ( 
         <ListItem disablePadding sx={{ display: 'block' }}>
-            <Link to={props.link}>
+            <NavLink to={props.link}>
                 <ListItemButton
                 sx={{
                     minHeight: 48,
@@ -35,7 +35,7 @@ const DrawerItem = (props) => {
                     </ListItemIcon>
                     <ListItemText primary={props.texto} sx={{ opacity: props.open ? 1 : 0 }} />
                 </ListItemButton>
-            </Link>
+            </NavLink>
         </ListItem>
      );
 }
