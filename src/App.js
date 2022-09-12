@@ -19,6 +19,7 @@ import DrawerItem from "./Componentes/DrawerItem";
 import TrendingUp from "@mui/icons-material/TrendingUp"
 import Person from "@mui/icons-material/Person";
 import Sell from "@mui/icons-material/Sell";
+import "./App.css";
 
 
 const App = () => {

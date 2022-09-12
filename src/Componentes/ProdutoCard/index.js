@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
-import {CardContent, CardHeader, Switch, Typography,FormControlLabel } from "@mui/material";
+import {CardContent, CardHeader, Switch, Typography,FormControlLabel, Button } from "@mui/material";
 import styles from './styles.module.css';
 import EditIcon from '@mui/icons-material/Edit';
-import Fab from '@mui/material/Fab';
 
 
 
@@ -47,9 +46,9 @@ const ProdutoCard = ({produto}) => {
                     </Typography> 
                 </CardContent>
                 <CardActions>
-                <Fab>
-                    <EditIcon />
-                </Fab>
+                <Button>
+                    Editar
+                </Button>
                 </CardActions>
             </Card>
         </div>
