@@ -3,8 +3,7 @@ import ProdutoCard from '../Componentes/ProdutoCard';
 import axios from 'axios';
 import Cards from '../Componentes/Cards/Index';
 import {CircularProgress} from '@mui/material';
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
+import FabAdd from '../Componentes/FabAdd';
 
 const PGProdutos = () => {
 
@@ -41,6 +40,8 @@ const PGProdutos = () => {
 
     }, [])
 
+    const [ modalCadastraProduto, alteraModalCadastraProduto ] = React.useState( false );
+
     const [produtos, mudaProdutos] = React.useState([])
 
     axios.get("http://10.60.46.31:3001/produtos/busca_todos")
@@ -56,10 +57,7 @@ const PGProdutos = () => {
                 </Cards>
             )}
 
-            <Fab color="primary" aria-label="add" className='Fab' sx= {{position: 'fixed',bottom: 16,
-    right: 16}}>
-                <AddIcon />
-            </Fab>
+            <FabAdd onCLick={() => alteraModalCadastraProduto(true)} />
 
         </div>
      );

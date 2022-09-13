@@ -132,7 +132,7 @@ const App = () => {
                             </IconButton>
                         </DrawerHeader> 
                         <List>
-                            <DrawerItem link="/dashboard" open={open} icon={<Home/>} texto= "Dashboard"/>
+                            <DrawerItem link="/dashboard" open={open} icon={<Home/>}  texto= "Dashboard"/>
                         </List>               
                         <List>
                             <DrawerItem link="/produtos" open={open} icon={<ShoppingCart/>} texto= "Produtos"/>
