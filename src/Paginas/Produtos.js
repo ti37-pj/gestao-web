@@ -4,6 +4,9 @@ import axios from 'axios';
 import Cards from '../Componentes/Cards/Index';
 import {CircularProgress} from '@mui/material';
 import FabAdd from '../Componentes/FabAdd';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
 
 const PGProdutos = () => {
 
@@ -40,9 +43,23 @@ const PGProdutos = () => {
 
     }, [])
 
-    const [ modalCadastraProduto, alteraModalCadastraProduto ] = React.useState( false );
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '80%',
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+      };
 
     const [produtos, mudaProdutos] = React.useState([])
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     axios.get("http://10.60.46.31:3001/produtos/busca_todos")
 
@@ -57,7 +74,23 @@ const PGProdutos = () => {
                 </Cards>
             )}
 
-            <FabAdd onCLick={() => alteraModalCadastraProduto(true)} />
+            <FabAdd onClick={handleOpen} />
+
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Text in a modal
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                    </Typography>
+                </Box>
+            </Modal>
 
         </div>
      );
