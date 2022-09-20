@@ -2,43 +2,21 @@ import React, { useEffect } from 'react';
 import ProdutoCard from '../Componentes/ProdutoCard';
 import axios from 'axios';
 import Cards from '../Componentes/Cards/Index';
-import {CircularProgress} from '@mui/material';
+import {Button, CircularProgress} from '@mui/material';
 import FabAdd from '../Componentes/FabAdd';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
 
 const PGProdutos = () => {
 
     useEffect(()=>{
-        setTimeout(() => {
-            mudaProdutos([
-                {
-                    title:'X-Tudo',
-                    descricao:'Pão, ovo, muçarela, hamburguer',
-                    preco_custo:"18",
-                    preco_venda:"25",
-                    registro:'12/09/2022 as 14:16',
-                    imagem_url:"https://i0.wp.com/xtudoreceitas.com/wp-content/uploads/xtudo.png?w=650&ssl=1"
-                },
-                {
-                    title:'X-Tudo',
-                    descricao:'Pão, ovo, muçarela, hamburguer',
-                    preco_custo:"18",
-                    preco_venda:"25",
-                    registro:'12/09/2022 as 14:16',
-                    imagem_url:"https://i0.wp.com/xtudoreceitas.com/wp-content/uploads/xtudo.png?w=650&ssl=1"
-                },
-                {
-                    title:'X-Tudo',
-                    descricao:'Pão, ovo, muçarela, hamburguer',
-                    preco_custo:"18",
-                    preco_venda:"25",
-                    registro:'12/09/2022 as 14:16',
-                    imagem_url:"https://i0.wp.com/xtudoreceitas.com/wp-content/uploads/xtudo.png?w=650&ssl=1"
-                }
-            ])
-        }, 3000)
+        axios.get("http://10.60.46.31:3001/produtos/busca_todos")
+            .then(
+                res => mudaProdutos(res.data)
+            )
+            .catch(res => console.log(res))
 
 
     }, [])
@@ -48,21 +26,26 @@ const PGProdutos = () => {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: '90%',
-        height:'90%',
+        width: '80%',
+        height: '65%',
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
       };
 
+    const styleText = {
+        border: '2px solid #000',
+        padding: '10px',
+        margin: '10px',
+        width: '99%',
+    }
+
     const [produtos, mudaProdutos] = React.useState([])
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
-    axios.get("http://10.60.46.31:3001/produtos/busca_todos")
 
     return ( 
         <div>
@@ -84,8 +67,13 @@ const PGProdutos = () => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <label>Nome: </label>
-                    <input/>
+                    <TextField sx={styleText} id="standard-basic" label="Insira o Nome do Produto" variant="standard" />
+                    <TextField sx={styleText} id="standard-basic" label="Insira a Descrição do Produto" variant="standard" />
+                    <TextField sx={styleText} id="standard-basic" label="Insira o Preço de Venda do Produto" variant="standard" />
+                    <TextField sx={styleText} id="standard-basic" label="Insira o Preço de Custo do Produto" variant="standard" />
+                    <TextField sx={styleText} id="standard-basic" label="Insira a URL da imagem do Produto" variant="standard" />
+                    <Button>Salvar</Button>
+                    <Button>Cancelar</Button>
                 </Box>
             </Modal>
 
