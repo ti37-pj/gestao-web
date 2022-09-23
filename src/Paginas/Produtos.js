@@ -5,7 +5,6 @@ import Cards from '../Componentes/Cards/Index';
 import {Button, CircularProgress} from '@mui/material';
 import FabAdd from '../Componentes/FabAdd';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 
@@ -41,6 +40,16 @@ const PGProdutos = () => {
         width: '99%',
     }
 
+    const cadastraProduto = (event) => {
+        axios.post("http://10.60.46.31:3001/produtos/busca_todos")
+        event.preventDefault();
+
+        setOpen(produtos => [...produtos,
+			{
+				
+			}
+    }
+
     const [produtos, mudaProdutos] = React.useState([])
 
     const [open, setOpen] = React.useState(false);
@@ -50,7 +59,7 @@ const PGProdutos = () => {
     return ( 
         <div>
             <h1>Produtos</h1>
-            {(produtos == 0) ? (
+            {(produtos === 0) ? (
                 <CircularProgress />
             ) : (
                 <Cards>
@@ -71,8 +80,9 @@ const PGProdutos = () => {
                     <TextField sx={styleText} id="standard-basic" label="Insira a Descrição do Produto" variant="standard" />
                     <TextField sx={styleText} id="standard-basic" label="Insira o Preço de Venda do Produto" variant="standard" />
                     <TextField sx={styleText} id="standard-basic" label="Insira o Preço de Custo do Produto" variant="standard" />
+                    <TextField sx={styleText} id="standard-basic" label="Insira a Categoria do Produto" variant="standard" />
                     <TextField sx={styleText} id="standard-basic" label="Insira a URL da imagem do Produto" variant="standard" />
-                    <Button>Salvar</Button>
+                    <Button onSubmit={event => cadastraProduto(event)}>Salvar</Button>
                     <Button>Cancelar</Button>
                 </Box>
             </Modal>

@@ -42,6 +42,7 @@ const ProdutoCard = ({produto}) => {
                         <TextField id="standard-basic" value={produto.descricao} label="Standard" variant="standard" />
                         <TextField id="standard-basic" value={produto.preco_custo} label="Standard" variant="standard" />
                         <TextField id="standard-basic" value={produto.preco_venda} label="Standard" variant="standard" />
+                        <TextField id="standard-basic" value={produto.categoria} label="Standard" variant="standard" />
 
                     </>              
                     :
@@ -57,6 +58,9 @@ const ProdutoCard = ({produto}) => {
                         </Typography>
                         <Typography>
                             Preço Venda:R${produto.preco_venda}
+                        </Typography>
+                        <Typography>
+                            Categoria:{produto.categoria}
                         </Typography>
                     </>          
                 }
