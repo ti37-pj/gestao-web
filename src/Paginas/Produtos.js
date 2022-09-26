@@ -40,17 +40,19 @@ const PGProdutos = () => {
         width: '99%',
     }
 
-    const cadastraProduto = (event) => {
+
+    const cadastraProduto = (produtos, event) => {
         axios.post("http://10.60.46.31:3001/produtos/busca_todos")
         event.preventDefault();
-
-        setOpen(produtos => [...produtos,
-			{
-				
-			}
     }
 
     const [produtos, mudaProdutos] = React.useState([])
+
+    const [nome, setNome] = React.useState();
+    const [descricao, setDescricao] = React.useState();
+    const [imagem, setimagem] = React.useState();
+    const [preco_custo, setPreco_custo] = React.useState();
+    const [preco_venda, setPreco_Venda] = React.useState();
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -76,13 +78,60 @@ const PGProdutos = () => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <TextField sx={styleText} id="standard-basic" label="Insira o Nome do Produto" variant="standard" />
-                    <TextField sx={styleText} id="standard-basic" label="Insira a Descrição do Produto" variant="standard" />
-                    <TextField sx={styleText} id="standard-basic" label="Insira o Preço de Venda do Produto" variant="standard" />
-                    <TextField sx={styleText} id="standard-basic" label="Insira o Preço de Custo do Produto" variant="standard" />
-                    <TextField sx={styleText} id="standard-basic" label="Insira a Categoria do Produto" variant="standard" />
-                    <TextField sx={styleText} id="standard-basic" label="Insira a URL da imagem do Produto" variant="standard" />
-                    <Button onSubmit={event => cadastraProduto(event)}>Salvar</Button>
+                    <TextField 
+                    sx={styleText}
+                    type="text"
+                    value={nome}
+                    onChange={(e) => setNome(e.target.value)}
+                    id="standard-basic"
+                    label="Insira o Nome do Produto"
+                    variant="standard" />
+
+                    <TextField 
+                    sx={styleText}
+                    type="text"
+                    value={descricao}
+                    onChange={(e) => setDescricao(e.target.value)}
+                    id="standard-basic"
+                    label="Insira a Descrição do Produto"
+                    variant="standard" />
+
+                    <TextField 
+                    sx={styleText}
+                    type="text"
+                    value={preco_venda}
+                    onChange={(e) => setPreco_Venda(e.target.value)}
+                    id="standard-basic"
+                    label="Insira o Preço de Venda do Produto"
+                    variant="standard" />
+
+                    <TextField 
+                    sx={styleText}
+                    type="text"
+                    value={preco_custo}
+                    onChange={(e) => setPreco_custo(e.target.value)}
+                    id="standard-basic"
+                    label="Insira o Preço de Custo do Produto"
+                    variant="standard" />
+
+                    <TextField 
+                    sx={styleText}
+                    type="text" 
+                    id="standard-basic"
+                    label="Insira a Categoria do Produto"
+                    variant="standard" />
+
+                    <TextField 
+                    sx={styleText}
+                    type="text"
+                    id="standard-basic"
+                    value={imagem}
+                    onChange={(e) => setimagem(e.target.value)}
+                    label="Insira a URL da imagem do Produto"
+                    variant="standard" />
+
+                    <Button onSubmit={event => cadastraProduto(produtos, event)}>Salvar</Button>
+
                     <Button>Cancelar</Button>
                 </Box>
             </Modal>
