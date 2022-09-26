@@ -44,6 +44,17 @@ const PGProdutos = () => {
     const cadastraProduto = (produtos, event) => {
         axios.post("http://10.60.46.31:3001/produtos/busca_todos")
         event.preventDefault();
+
+        setLista(lista => [...lista,
+			{
+                nome: produtos.nome
+                descricao: produtos.descricao
+                imagem: produtos.imagem_url
+                preco_custo: produtos.preco_custo
+                preco_venda: produtos.preco_venda
+			}
+	] );
+
     }
 
     const [produtos, mudaProdutos] = React.useState([])
