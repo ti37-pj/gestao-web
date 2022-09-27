@@ -3,14 +3,15 @@ import {Button} from '@mui/material';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import './styles.module.css';
 
  const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '80%',
-    height: '65%',
+    width: '95%',
+    height:'95%',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -21,7 +22,8 @@ const styleText = {
     border: '2px solid #000',
     padding: '10px',
     margin: '10px',
-    width: '99%',
+    width: '90%',
+    height:'10%'
 }
 
 const ProdutoModal = (props) => {
