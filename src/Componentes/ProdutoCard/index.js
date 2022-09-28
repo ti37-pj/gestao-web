@@ -5,10 +5,8 @@ import CardActions from '@mui/material/CardActions';
 import {CardContent, CardHeader, Switch, Typography,FormControlLabel, Button } from "@mui/material";
 import styles from './styles.module.css';
 import ProdutoModal from "../ProdutoModal";
-
-
-
-
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import api from '../../api';
 
 const ProdutoCard = (props) => {
 
@@ -17,28 +15,50 @@ const ProdutoCard = (props) => {
 
     const [modalOpen, setModalOpen] = useState(false);
 
+    //2022-09-28T19:09:37.000Z
+    let dataFormatada = produto.registro
+    let horas = dataFormatada.split("T")[1]
+    horas = horas.split(".")[0]
+    horas = parseInt(horas.split(":")[0])-3 + ":" + horas.split(":")[1]
+    let data = dataFormatada.split("T")[0]
+    data = data.split("-").reverse().join("/")
+    dataFormatada = data + " às " + horas
+
     const alteraProduto = (produtoAlterado) => {
-        //api.put("/produtos", produtoAlterado)
-        //.then((res) => {
-        //    if (res.status === 201 || res.status === 200) {
+        console.log(produto)
+        api.put(`/produtos/altera/${produto.id}`, produtoAlterado)
+        .then((res) => {
+           if (res.status === 200) {
                 setModalOpen(false)
+                produtoAlterado.id = produto.id
                 setProduto(produtoAlterado)
-        //    }
-        //})
-        //.catch();
+            }
+        })
+        .catch();
+    }
+
+    const deletaProduto = () => {
+        api.delete(`/produtos/deleta/${produto.id}`)
+        .then((res) => {
+            if(res.status ===200){
+                props.buscaTodos();
+            }
+        }
+
+        )
     }
 
     return(
         <div className={styles.produtoCard}>
             <Card sx={{maxWidth: 345}} >
                 <CardHeader
-                    title={produto.title}
+                    title={produto.nome}
                     action={
                         <FormControlLabel
                             control={
-                                <Switch />
+                                <DeleteForeverIcon onClick={() => deletaProduto()}/>
                             }
-                            label="Aparece no menu"
+                            
                         />
                     }
                 />
@@ -48,9 +68,6 @@ const ProdutoCard = (props) => {
                     alt="Foto do produto"
                 />
                 <CardContent>
-                    <Typography>
-                        {produto.nome}
-                    </Typography>
                     <Typography>
                         {produto.descricao}
                     </Typography>
@@ -64,7 +81,7 @@ const ProdutoCard = (props) => {
                         Categoria:{produto.id_categoria}
                     </Typography>
                     <Typography>
-                        {produto.registro}
+                        {dataFormatada}
                     </Typography>    
                 </CardContent>
                 <CardActions>

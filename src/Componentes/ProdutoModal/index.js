@@ -104,7 +104,6 @@ const ProdutoModal = (props) => {
                         preco_custo,
                         preco_venda,
                         id_categoria,
-                        registro: props.produto.registro,
                     }) }>Salvar</Button>
 
                     <Button onClick={props.onClose}>Cancelar</Button>

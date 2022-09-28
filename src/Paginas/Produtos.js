@@ -23,6 +23,7 @@ const PGProdutos = () => {
         .then((res) => {
             if (res.status === 201 || res.status === 200) {
                 buscaTodos();
+                handleClose();
             }
         })
         .catch();
@@ -42,7 +43,7 @@ const PGProdutos = () => {
                 <CircularProgress />
             ) : (
                 <Cards>
-                    {produtos.map(produto => <ProdutoCard produto={produto} key={produto.id} />)}
+                    {produtos.map(produto => <ProdutoCard buscaTodos={buscaTodos} produto={produto} key={produto.id} />)}
                 </Cards>
             )}
 
