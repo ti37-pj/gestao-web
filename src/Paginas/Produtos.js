@@ -47,11 +47,11 @@ const PGProdutos = () => {
 
         setLista(lista => [...lista,
 			{
-                nome: produtos.nome
-                descricao: produtos.descricao
-                imagem: produtos.imagem_url
-                preco_custo: produtos.preco_custo
-                preco_venda: produtos.preco_venda
+                nome: produtos.nome,
+                descricao: produtos.descricao,
+                imagem: produtos.imagem_url,
+                preco_custo: produtos.preco_custo,
+                preco_venda: produtos.preco_venda,
 			}
 	] );
 
