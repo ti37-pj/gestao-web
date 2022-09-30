@@ -1,4 +1,5 @@
 import Produtos from "./Paginas/Produtos";
+import Cupons from "./Paginas/Cupons";
 import { BrowserRouter, Route, Routes} from "react-router-dom";
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
@@ -132,7 +133,7 @@ const App = () => {
                             </IconButton>
                         </DrawerHeader> 
                         <List>
-                            <DrawerItem link="" open={open} icon={<Home/>}/>
+                            <DrawerItem link="" open={open} icon={<Home/>} texto="HomePage"/>
                         </List>               
                         <List>
                             <DrawerItem link="/produtos" open={open} icon={<ShoppingCart/>} texto= "Produtos"/>
@@ -157,7 +158,7 @@ const App = () => {
                                 <Route path="/dashboard"></Route>
                             </Routes>
                             <Routes>
-                                <Route path="/cupons"></Route>
+                                <Route path="/cupons" element={<Cupons/>}></Route>
                             </Routes>
                             <Routes>
                                 <Route path="/funcionarios"></Route>

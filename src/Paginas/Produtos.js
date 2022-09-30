@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import ProdutoCard from '../Componentes/ProdutoCard';
+import ProdutoCard from '../Componentes/ComProdutos/ProdutoCard';
 import Cards from '../Componentes/Cards/Index';
 import {CircularProgress} from '@mui/material';
 import FabAdd from '../Componentes/FabAdd';
 import api from '../api';
-import ProdutoModal from '../Componentes/ProdutoModal';
+import ProdutoModal from '../Componentes/ComProdutos/ProdutoModal';
 
 const PGProdutos = () => {
 

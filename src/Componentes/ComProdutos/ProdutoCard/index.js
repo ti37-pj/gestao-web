@@ -2,15 +2,13 @@ import React, { useState } from "react";
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
-import {CardContent, CardHeader, Switch, Typography,FormControlLabel, Button } from "@mui/material";
+import {CardContent, CardHeader, Typography,FormControlLabel, Button } from "@mui/material";
 import styles from './styles.module.css';
 import ProdutoModal from "../ProdutoModal";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import api from '../../api';
+import api from '../../../api';
 
 const ProdutoCard = (props) => {
-
-    const [apareceMenu, setApareceMenu] = useState(false);
     const [produto, setProduto] = useState(props.produto);
 
     const [modalOpen, setModalOpen] = useState(false);
