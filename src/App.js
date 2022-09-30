@@ -1,5 +1,6 @@
 import Produtos from "./Paginas/Produtos";
 import Cupons from "./Paginas/Cupons";
+import Funcionarios from "./Paginas/Funcionarios";
 import { BrowserRouter, Route, Routes} from "react-router-dom";
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
@@ -161,7 +162,7 @@ const App = () => {
                                 <Route path="/cupons" element={<Cupons/>}></Route>
                             </Routes>
                             <Routes>
-                                <Route path="/funcionarios"></Route>
+                                <Route path="/funcionarios" element={<Funcionarios/>}></Route>
                             </Routes>
                             <Routes>
                                 <Route path="/vendas"></Route>
