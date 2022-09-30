@@ -1,0 +1,8 @@
+table {
+    width: 100%;
+  }
+  
+  th {
+    height: 70px;
+  }
+tr:nth-child(even) {background-color: #f2f2f2;}
