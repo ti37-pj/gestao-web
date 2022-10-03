@@ -4,6 +4,11 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import './styles.module.css';
+import dayjs from 'dayjs'
+import 'dayjs/locale/pt-br';
+import {DateTimePicker} from '@mui/x-date-pickers/DateTimePicker'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
  const style = {
     position: 'absolute',
@@ -31,8 +36,8 @@ const CupomModal = (props) => {
     const [nome, setNome] = React.useState(props.cupom?.nome);
     const [quantidade, setQuantidade] = React.useState(props.cupom?.quantidade);
     const [desconto, setDesconto] = React.useState(props.cupom?.desconto);
-    const [inicio, setInicio] = React.useState(props.cupom?.inicio);
-    const [termino, setTermino] = React.useState(props.cupom?.termino);
+    const [inicio, setInicio] = React.useState(dayjs(props.cupom?.inicio));
+    const [termino, setTermino] = React.useState(dayjs(props.cupom?.termino));
 
     return ( 
         <Modal
@@ -69,24 +74,27 @@ const CupomModal = (props) => {
                     label="Insira o valor de Desconto do Cupom"
                     variant="standard" />
 
-                    <TextField 
-                    sx={styleText}
-                    type="text"
-                    value={inicio}
-                    onChange={(e) => setInicio(e.target.value)}
-                    id="standard-basic"
-                    label="Insira a data inicial do cupom"
-                    variant="standard" />
+                    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'pt-br'}>
+                        <DateTimePicker 
+                        renderInput={(params) => <TextField {...params} />}
+                        sx={styleText}
+                        type="text"
+                        value={inicio}
+                        onChange={(e) => setInicio(e.target.value)}
+                        id="standard-basic"
+                        label="Insira a data inicial do cupom"
+                        variant="standard" />
 
-                    <TextField 
-                    sx={styleText}
-                    type="text" 
-                    id="standard-basic"
-                    value={termino}
-                    onChange={(e) => setTermino(e.target.value)}
-                    label="Insira a data final do Cupom"
-                    variant="standard" />
-
+                        <DateTimePicker 
+                        renderInput={(params) => <TextField {...params} />}
+                        sx={styleText}
+                        type="text" 
+                        id="standard-basic"
+                        value={termino}
+                        onChange={(e) => setTermino(e.target.value)}
+                        label="Insira a data final do Cupom"
+                        variant="standard" />
+                    </LocalizationProvider>
 
                     <Button onClick={_event => props.onSave({
                         nome,
