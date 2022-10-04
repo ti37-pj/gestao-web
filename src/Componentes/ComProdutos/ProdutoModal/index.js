@@ -1,9 +1,11 @@
 import React from 'react';
-import {Button} from '@mui/material';
+import {Button, FormControl, InputLabel} from '@mui/material';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import './styles.module.css';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
  const style = {
     position: 'absolute',
@@ -26,6 +28,11 @@ const styleText = {
     height:'10%'
 }
 
+const styleSelect = {
+    width: '50%',
+    height:'10%px',
+}
+
 const ProdutoModal = (props) => {
 
     const [nome, setNome] = React.useState(props.produto?.nome);
@@ -34,6 +41,10 @@ const ProdutoModal = (props) => {
     const [preco_custo, setPreco_custo] = React.useState(props.produto?.preco_custo);
     const [preco_venda, setPreco_Venda] = React.useState(props.produto?.preco_venda);
     const [id_categoria, setIdCategoria] = React.useState(props.produto?.id_categoria);
+
+    const handleChange = (event) => {
+        setIdCategoria(event.target.value);
+    };
 
     return ( 
         <Modal
@@ -79,15 +90,17 @@ const ProdutoModal = (props) => {
                     label="Insira o Preço de Custo do Produto"
                     variant="standard" />
 
-                    <TextField 
-                    sx={styleText}
-                    type="text" 
-                    id="standard-basic"
-                    value={id_categoria}
-                    onChange={(e) => setIdCategoria(e.target.value)}
-                    label="Insira a Categoria do Produto"
-                    variant="standard" />
-
+                    <FormControl sx={styleSelect}>
+                        <InputLabel id="label-categoria">Categoria</InputLabel>
+                        <Select
+                        labelId="label-categoria"
+                        label="Categoria"
+                        onChange={handleChange}
+                        >
+                            {props.categorias?.map(categoria => <MenuItem key={categoria.id} value={categoria.id}>{categoria.nome}</MenuItem>)}
+                        </Select>
+                    </FormControl>
+                    
                     <TextField 
                     sx={styleText}
                     type="text"

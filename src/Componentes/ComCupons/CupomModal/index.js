@@ -9,6 +9,7 @@ import 'dayjs/locale/pt-br';
 import {DateTimePicker} from '@mui/x-date-pickers/DateTimePicker'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { dateToISO } from '../../../lib/DateUtils';
 
  const style = {
     position: 'absolute',
@@ -38,6 +39,14 @@ const CupomModal = (props) => {
     const [desconto, setDesconto] = React.useState(props.cupom?.desconto);
     const [inicio, setInicio] = React.useState(dayjs(props.cupom?.inicio));
     const [termino, setTermino] = React.useState(dayjs(props.cupom?.termino));
+
+    const handleChangeInicio = (inicio) => {
+        setInicio(inicio);
+    };
+
+    const handleChangeTermino = (termino) => {
+        setTermino(termino);
+    };
 
     return ( 
         <Modal
@@ -80,7 +89,7 @@ const CupomModal = (props) => {
                         sx={styleText}
                         type="text"
                         value={inicio}
-                        onChange={(e) => setInicio(e.target.value)}
+                        onChange={handleChangeInicio}
                         id="standard-basic"
                         label="Insira a data inicial do cupom"
                         variant="standard" />
@@ -91,7 +100,7 @@ const CupomModal = (props) => {
                         type="text" 
                         id="standard-basic"
                         value={termino}
-                        onChange={(e) => setTermino(e.target.value)}
+                        onChange={handleChangeTermino}
                         label="Insira a data final do Cupom"
                         variant="standard" />
                     </LocalizationProvider>
@@ -100,8 +109,8 @@ const CupomModal = (props) => {
                         nome,
                         quantidade,
                         desconto,
-                        inicio,
-                        termino,
+                        inicio:  dateToISO(inicio.toDate()),
+                        termino: dateToISO(termino.toDate()),
                     }) }>Salvar</Button>
 
                     <Button onClick={props.onClose}>Cancelar</Button>

@@ -24,6 +24,7 @@ const PGCupom = () => {
     }
 
     const cadastraCupom = (cupom) => {
+        console.log(cupom);
         api.post("/cupons/insere", cupom)
         .then((res) => {
             if (res.status === 201 || res.status === 200) {

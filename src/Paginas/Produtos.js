@@ -10,11 +10,17 @@ const PGProdutos = () => {
 
     useEffect(()=>{
         buscaTodos();
+        buscaTodosCategoria();
     }, [])
 
     const buscaTodos = () => {
         api.get("/produtos/busca_todos")
         .then(res => setProdutos(res.data))
+    }
+
+    const buscaTodosCategoria = () => {
+        api.get("/categorias/busca_todos")
+        .then(res => setCategorias(res.data))
         .catch(res => console.log(res));
     }
 
@@ -30,11 +36,10 @@ const PGProdutos = () => {
     }
 
     const [produtos, setProdutos] = React.useState([])
+    const [categorias, setCategorias] = React.useState([]);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
-
-
 
     return ( 
         <div>
@@ -42,14 +47,13 @@ const PGProdutos = () => {
             {(produtos === 0) ? (
                 <CircularProgress />
             ) : (
-                <Cards>
-                    {produtos.map(produto => <ProdutoCard buscaTodos={buscaTodos} produto={produto} key={produto.id} />)}
-                </Cards>
+                    <Cards>
+                        {produtos.map(produto => <ProdutoCard buscaTodos={buscaTodos} produto={produto} key={produto.id} />)}       
+                    </Cards>
             )}
 
             <FabAdd onClick={handleOpen} />
-
-            <ProdutoModal open={open} onClose={handleClose} onSave={produto => cadastraProduto(produto)} />
+            <ProdutoModal open={open} onClose={handleClose} onSave={produto => cadastraProduto(produto)} categorias={categorias} />
 
         </div>
      );
