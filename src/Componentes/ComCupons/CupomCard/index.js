@@ -14,8 +14,6 @@ const CupomCard = (props) => {
 
     const [modalOpen, setModalOpen] = useState(false);
 
-    //2022-09-28T19:09:37.000Z
-
     const formataData = (date) => {
         if(!date){
             return(

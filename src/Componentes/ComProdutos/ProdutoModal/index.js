@@ -46,8 +46,6 @@ const ProdutoModal = (props) => {
         setIdCategoria(event.target.value);
     };
 
-    console.log(props.categorias)
-
     return ( 
         <Modal
                 open={props.open}

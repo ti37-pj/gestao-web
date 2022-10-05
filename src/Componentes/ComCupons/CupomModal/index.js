@@ -106,7 +106,7 @@ const CupomModal = (props) => {
                     </LocalizationProvider>
 
                     <Button onClick={_event => props.onSave({
-                        nome: "aosd",
+                        nome,
                         quantidade,
                         desconto,
                         inicio:  dateToISO(inicio.toDate()),
