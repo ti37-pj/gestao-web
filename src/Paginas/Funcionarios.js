@@ -10,37 +10,26 @@ import FuncionarioModal from '../Componentes/FuncionarioModal';
 function Funcionarios(){
 
     const [funcionarios, setFuncionarios ] = React.useState([])
-
-    const [nome, setNome] = React.useState();
-    const [cargo, setCargo] = React.useState();
-    const [usuario, setUsuario] = React.useState();
-    const [senha, setSenha] = React.useState();
-
     useEffect(()=>{
-        axios.get("http://10.60.46.31:3001/funcionarios/busca_todos")
-            .then(
-                res => {setFuncionarios(res.data)
-                console.log (res.data)}
-            )
-            .catch(res => console.log(res))
-
-
+        buscaTodos()
     }, [])
 
-    const cadastraFuncionario = (funcionario, event) => {
-        axios.post("http://10.60.46.31:3001/funcionarios/busca_todos")
-        event.preventDefault();
+    const buscaTodos = () => {
+        axios.get("http://10.60.46.31:3001/funcionarios/busca_todos")
+        .then(res => setFuncionarios(res.data))
+        .catch(res => console.log(res));
+    }
 
-    //     setLista(lista => [...lista,
-    //         {
-    //             nome: funcionario.nome,
-    //             cargo: funcionario.cargo,
-    //             usuario: funcionario.usuario,
-    //             senha: funcionario.senha,
-    //             contato: funcionario.contato,
-    //         }
-    // ] );
-
+    const cadastraFuncionario = (Funcionarios) => {
+        console.log(Funcionarios)
+        axios.post("http://10.60.46.31:3001/funcionarios/insere", Funcionarios)
+        .then((res) => {
+            if (res.status === 201 || res.status === 200) {
+                buscaTodos();
+                handleClose();
+            }
+        })
+        .catch();
     }
 
     const [open, setOpen] = React.useState(false);
@@ -51,7 +40,7 @@ function Funcionarios(){
     return(
         <div>
             <h1>Funcionários</h1>
-            {(funcionarios == 0 )?(
+            {(funcionarios === 0 )?(
                 <CircularProgress/>
             ):(
                 <FuncionarioTabela funcionarios={funcionarios} />

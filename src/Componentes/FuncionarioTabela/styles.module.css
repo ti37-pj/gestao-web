@@ -4,5 +4,10 @@ table {
   
   th {
     height: 70px;
+    text-align: left;
+    padding: 15px;
+    background-color: #04AA6D;
+    color: white;
   }
 tr:nth-child(even) {background-color: #f2f2f2;}
+tr:hover {background-color: coral;}
