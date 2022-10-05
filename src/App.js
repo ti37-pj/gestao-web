@@ -142,15 +142,15 @@ const App = () => {
                         <List>
                             <DrawerItem link="/funcionarios" open={open} icon={<Person/>} texto= "Funcioários"/>
                         </List>
-                        <List>
-                            <DrawerItem link="/vendas" open={open} icon={<TrendingUp/>} texto= "Vendas"/>
-                        </List>
                     </Drawer>
                 <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                     <DrawerHeader />
                         <main>
                             <Routes>
                                 <Route path="/produtos" element={<Produtos/>}></Route>
+                            </Routes>
+                            <Routes>
+                                <Route path="/login"></Route>
                             </Routes>
                             <Routes>
                                 <Route path="/dashboard"></Route>

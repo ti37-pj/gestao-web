@@ -10,7 +10,7 @@ import api from '../../../api';
 
 const ProdutoCard = (props) => {
     const [produto, setProduto] = useState(props.produto);
-    const [categorias, setCategorias] = useState([props.categorias]);
+    const [categorias, setCategorias] = useState(props.categorias);
 
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -87,7 +87,7 @@ const ProdutoCard = (props) => {
                         Preço Venda:R${produto.preco_venda}
                     </Typography>
                     <Typography>
-                        Categoria:{props.categorias[produto.id_categoria-1].nome}
+                        Categoria: {produto.nome_categoria}
                     </Typography>
                     <Typography>
                         {formataData(produto.registro)}
