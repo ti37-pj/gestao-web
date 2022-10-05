@@ -48,7 +48,7 @@ const PGProdutos = () => {
                 <CircularProgress />
             ) : (
                     <Cards>
-                        {produtos.map(produto => <ProdutoCard buscaTodos={buscaTodos} produto={produto} key={produto.id} />)}       
+                        {produtos.map(produto => <ProdutoCard buscaTodos={buscaTodos} produto={produto} categorias={categorias} key={produto.id} />)}       
                     </Cards>
             )}
 

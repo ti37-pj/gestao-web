@@ -17,6 +17,11 @@ const CupomCard = (props) => {
     //2022-09-28T19:09:37.000Z
 
     const formataData = (date) => {
+        if(!date){
+            return(
+                null
+            )
+        }
         let dataFormatada = date
         let horas = dataFormatada.split("T")[1]
         horas = horas.split(".")[0]
@@ -31,7 +36,7 @@ const CupomCard = (props) => {
     }
 
     const alteraCupom = (cupomAlterado) => {
-        console.log(cupom)
+        console.log(cupomAlterado)
         api.put(`/cupons/altera/${cupom.id}`, cupomAlterado)
         .then((res) => {
            if (res.status === 200) {
@@ -40,7 +45,7 @@ const CupomCard = (props) => {
                 setCupom(cupomAlterado)
             }
         })
-        .catch();
+        .catch(e=>console.log(e));
     }
 
     const deletaCupom = () => {

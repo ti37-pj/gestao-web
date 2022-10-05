@@ -46,6 +46,8 @@ const ProdutoModal = (props) => {
         setIdCategoria(event.target.value);
     };
 
+    console.log(props.categorias)
+
     return ( 
         <Modal
                 open={props.open}
@@ -92,13 +94,13 @@ const ProdutoModal = (props) => {
 
                     <FormControl sx={styleSelect}>
                         <InputLabel id="label-categoria">Categoria</InputLabel>
-                        <Select
-                        labelId="label-categoria"
-                        label="Categoria"
-                        onChange={handleChange}
-                        >
-                            {props.categorias?.map(categoria => <MenuItem key={categoria.id} value={categoria.id}>{categoria.nome}</MenuItem>)}
-                        </Select>
+                            <Select
+                            labelId="label-categoria"
+                            label="Categoria"
+                            onChange={handleChange}
+                            >
+                                {props.categorias?.map(categoria => <MenuItem key={categoria.id} value={categoria.id}>{categoria.nome}</MenuItem>)}
+                            </Select>
                     </FormControl>
                     
                     <TextField 

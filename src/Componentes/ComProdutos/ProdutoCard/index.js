@@ -10,17 +10,28 @@ import api from '../../../api';
 
 const ProdutoCard = (props) => {
     const [produto, setProduto] = useState(props.produto);
+    const [categorias, setCategorias] = useState([props.categorias]);
 
     const [modalOpen, setModalOpen] = useState(false);
 
-    //2022-09-28T19:09:37.000Z
-    let dataFormatada = produto.registro
-    let horas = dataFormatada.split("T")[1]
-    horas = horas.split(".")[0]
-    horas = parseInt(horas.split(":")[0])-3 + ":" + horas.split(":")[1]
-    let data = dataFormatada.split("T")[0]
-    data = data.split("-").reverse().join("/")
-    dataFormatada = data + " às " + horas
+    const formataData = (date) => {
+        if(!date){
+            return(
+                null
+            )
+        }
+        let dataFormatada = date
+        let horas = dataFormatada.split("T")[1]
+        horas = horas.split(".")[0]
+        horas = parseInt(horas.split(":")[0])-3 + ":" + horas.split(":")[1]
+        let data = dataFormatada.split("T")[0]
+        data = data.split("-").reverse().join("/")
+        dataFormatada = data + " às " + horas
+
+        return(
+            dataFormatada
+        )
+    }
 
     const alteraProduto = (produtoAlterado) => {
         console.log(produto)
@@ -36,7 +47,7 @@ const ProdutoCard = (props) => {
     }
 
     const deletaProduto = () => {
-        api.delete(`/produtos/deleta/${produto.id}`)
+        api.delete(`/produtos/delete/${produto.id}`)
         .then((res) => {
             if(res.status ===200){
                 props.buscaTodos();
@@ -76,10 +87,10 @@ const ProdutoCard = (props) => {
                         Preço Venda:R${produto.preco_venda}
                     </Typography>
                     <Typography>
-                        Categoria:{produto.id_categoria}
+                        Categoria:{props.categorias[produto.id_categoria-1].nome}
                     </Typography>
                     <Typography>
-                        {dataFormatada}
+                        {formataData(produto.registro)}
                     </Typography>    
                 </CardContent>
                 <CardActions>
@@ -88,7 +99,7 @@ const ProdutoCard = (props) => {
                 </Button>
                 </CardActions>
             </Card>
-            <ProdutoModal open={modalOpen} onClose={() => {setModalOpen(false)}} onSave={(produto) => {alteraProduto(produto)}} produto={produto} />
+            <ProdutoModal open={modalOpen} onClose={() => {setModalOpen(false)}} onSave={(produto) => {alteraProduto(produto)}} produto={produto} categorias={props.categorias} />
         </div>
     
     )
