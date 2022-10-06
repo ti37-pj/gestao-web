@@ -57,6 +57,10 @@ const ProdutoCard = (props) => {
         )
     }
 
+    const styleRegistro = {
+        fontSize: 10,
+    }
+
     return(
         <div className={styles.produtoCard}>
             <Card sx={{maxWidth: 345}} >
@@ -91,7 +95,7 @@ const ProdutoCard = (props) => {
                             return(categoria.id === produto.id_categoria)
                         })?.nome}
                     </Typography>
-                    <Typography>
+                    <Typography sx={styleRegistro}>
                         {formataData(produto.registro)}
                     </Typography>    
                 </CardContent>
