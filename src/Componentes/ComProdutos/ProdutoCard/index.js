@@ -87,7 +87,9 @@ const ProdutoCard = (props) => {
                         Preço Venda:R${produto.preco_venda}
                     </Typography>
                     <Typography>
-                        Categoria: {produto.nome_categoria}
+                        Categoria: {props.categorias.find((categoria) => {
+                            return(categoria.id === produto.id_categoria)
+                        })?.nome}
                     </Typography>
                     <Typography>
                         {formataData(produto.registro)}

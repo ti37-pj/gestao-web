@@ -10,19 +10,18 @@ const PGProdutos = () => {
 
     useEffect(()=>{
         buscaTodos();
-        buscaTodosCategoria();
     }, [])
 
     const buscaTodos = () => {
-        api.get("/produtos/busca_todos")
-        .then(res => setProdutos(res.data))
-    }
-
-    const buscaTodosCategoria = () => {
         api.get("/categorias/busca_todos")
-        .then(res => setCategorias(res.data))
+        .then(res =>{
+            setCategorias(res.data)
+            api.get("/produtos/busca_todos")
+            .then(res => setProdutos(res.data))
+        })
         .catch(res => console.log(res));
     }
+
 
     const cadastraProduto = (produto) => {
         api.post("/produtos/insere", produto)
