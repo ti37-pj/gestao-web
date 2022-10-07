@@ -63,7 +63,7 @@ const ProdutoCard = (props) => {
 
     return(
         <div className={styles.produtoCard}>
-            <Card sx={{maxWidth: 345}} >
+            <Card sx={{width:'250px', heigt:'455px'}} >
                 <CardHeader
                     title={produto.nome}
                     action={
@@ -76,9 +76,10 @@ const ProdutoCard = (props) => {
                     }
                 />
                 <CardMedia
-                    component='img'src={produto.imagem_url}
-                    
+                    component='img'
+                    src={produto.imagem_url}
                     alt="Foto do produto"
+                    sx={{width:'250px', height:'250px'}}
                 />
                 <CardContent>
                     <Typography>

@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
  const style = {
-    position: 'absolute',
+    position: 'relative',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -18,9 +18,11 @@ import Select from '@mui/material/Select';
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    overflowY:'scroll'
   };
 
 const styleText = {
+    position:'relative',
     padding: '10px',
     margin: '10px',
     width: '90%',
@@ -29,6 +31,7 @@ const styleText = {
 
 const styleButton = {
     margin: '10px',
+    position:'relative',
 }
 
 const ProdutoModal = (props) => {
@@ -54,79 +57,80 @@ const ProdutoModal = (props) => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    
                     <div>
-                        <TextField 
-                            sx={styleText}
-                            type="text"
-                            value={nome}
-                            onChange={(e) => setNome(e.target.value)}
-                            id="standard-basic"
-                            label="Insira o Nome do Produto"
-                            variant="outlined"
-                        />
-                        <TextField 
-                            sx={styleText}
-                            type="text"
-                            value={descricao}
-                            onChange={(e) => setDescricao(e.target.value)}
-                            id="standard-basic"
-                            label="Insira a Descrição do Produto"
-                            variant="outlined" 
-                        />
-                        <TextField 
-                            sx={styleText}
-                            type="text"
-                            value={preco_venda}
-                            onChange={(e) => setPreco_Venda(e.target.value)}
-                            id="standard-basic"
-                            label="Insira o Preço de Venda do Produto"
-                            variant="outlined" 
-                        />
-                        <TextField 
-                            sx={styleText}
-                            type="text"
-                            value={preco_custo}
-                            onChange={(e) => setPreco_custo(e.target.value)}
-                            id="standard-basic"
-                            label="Insira o Preço de Custo do Produto"
-                            variant="outlined"
+                        <div>
+                            <TextField 
+                                sx={styleText}
+                                type="text"
+                                value={nome}
+                                onChange={(e) => setNome(e.target.value)}
+                                id="standard-basic"
+                                label="Insira o Nome do Produto"
+                                variant="outlined"
                             />
-                        
-                        <TextField 
-                            sx={styleText}
-                            type="text"
-                            id="standard-basic"
-                            value={imagem_url}
-                            onChange={(e) => setImagemUrl(e.target.value)}
-                            label="Insira a URL da imagem do Produto"
-                            variant="outlined"
-                        />
+                            <TextField 
+                                sx={styleText}
+                                type="text"
+                                value={descricao}
+                                onChange={(e) => setDescricao(e.target.value)}
+                                id="standard-basic"
+                                label="Insira a Descrição do Produto"
+                                variant="outlined" 
+                            />
+                            <TextField 
+                                sx={styleText}
+                                type="text"
+                                value={preco_venda}
+                                onChange={(e) => setPreco_Venda(e.target.value)}
+                                id="standard-basic"
+                                label="Insira o Preço de Venda do Produto"
+                                variant="outlined" 
+                            />
+                            <TextField 
+                                sx={styleText}
+                                type="text"
+                                value={preco_custo}
+                                onChange={(e) => setPreco_custo(e.target.value)}
+                                id="standard-basic"
+                                label="Insira o Preço de Custo do Produto"
+                                variant="outlined"
+                                />
+                            
+                            <TextField 
+                                sx={styleText}
+                                type="text"
+                                id="standard-basic"
+                                value={imagem_url}
+                                onChange={(e) => setImagemUrl(e.target.value)}
+                                label="Insira a URL da imagem do Produto"
+                                variant="outlined"
+                            />
 
-                        <FormControl sx={styleText}>
-                            <InputLabel id="label-categoria">Categoria</InputLabel>
-                                <Select
-                                    labelId="label-categoria"
-                                    label="Categoria"
-                                    onChange={handleChange}
-                                    value={id_categoria}
-                                >
-                                    {props.categorias?.map(categoria => <MenuItem key={categoria.id} value={categoria.id}>{categoria.nome}</MenuItem>)}
-                                </Select>
-                        </FormControl>
-                    </div>
-                    <div>
-                        <Button sx={styleButton} onClick={_event => props.onSave({
-                            nome,
-                            descricao,
-                            imagem_url,
-                            preco_custo,
-                            preco_venda,
-                            id_categoria,
-                        }) }>Salvar</Button>
+                            <FormControl sx={styleText}>
+                                <InputLabel id="label-categoria">Categoria</InputLabel>
+                                    <Select
+                                        labelId="label-categoria"
+                                        label="Categoria"
+                                        onChange={handleChange}
+                                        value={id_categoria}
+                                    >
+                                        {props.categorias?.map(categoria => <MenuItem key={categoria.id} value={categoria.id}>{categoria.nome}</MenuItem>)}
+                                    </Select>
+                            </FormControl>
+                        </div>
+                        <div>
+                            <Button sx={styleButton} onClick={_event => props.onSave({
+                                nome,
+                                descricao,
+                                imagem_url,
+                                preco_custo,
+                                preco_venda,
+                                id_categoria,
+                            }) }>Salvar</Button>
 
-                        <Button onClick={props.onClose}>Cancelar</Button>
-                    </div>
+                            <Button onClick={props.onClose}>Cancelar</Button>
+                        </div>
+                    </div>                  
                 </Box>
             </Modal>
      );

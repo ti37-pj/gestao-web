@@ -59,7 +59,7 @@ const CupomCard = (props) => {
 
     return(
         <div className={styles.cuponCard}>
-            <Card sx={{maxWidth: 345}} >
+            <Card sx={{width:'250px', heigt:'455px'}} >
                 <CardHeader
                     title= {cupom.nome}
                     action={

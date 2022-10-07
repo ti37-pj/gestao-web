@@ -34,6 +34,10 @@ const PGProdutos = () => {
         .catch();
     }
 
+    //<Cards>
+        //<ProdutoCard buscaTodos={buscaTodos} produto={["produto 1","produto 2"]} categorias={["categoria 1","categoria 2"]} key='0'/>       
+    //</Cards>
+
     const [produtos, setProdutos] = React.useState([])
     const [categorias, setCategorias] = React.useState([]);
     const [open, setOpen] = React.useState(false);
@@ -46,9 +50,11 @@ const PGProdutos = () => {
             {(produtos === 0) ? (
                 <CircularProgress />
             ) : (
-                    <Cards>
-                        {produtos.map(produto => <ProdutoCard buscaTodos={buscaTodos} produto={produto} categorias={categorias} key={produto.id} />)}       
-                    </Cards>
+                    <div>
+                        <Cards>
+                            {produtos.map(produto => <ProdutoCard buscaTodos={buscaTodos} produto={produto} categorias={categorias} key={produto.id} />)}       
+                        </Cards>
+                    </div>        
             )}
 
             <FabAdd onClick={handleOpen} />
