@@ -1,13 +1,17 @@
 table {
     width: 100%;
+    border: 1px solid;
   }
-  
-  th {
+  table th {
+    font-weight: bold;
+  }
+  tr:first-child {
     height: 70px;
     text-align: left;
     padding: 15px;
-    background-color: #04AA6D;
+    background-color: #1976d2;
     color: white;
+    border: black;
   }
 tr:nth-child(even) {background-color: #f2f2f2;}
-tr:hover {background-color: coral;}
+

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from './styles.module.css';
 import api from "../../api";
 import FuncionarioModal from "../FuncionarioModal";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const FuncionarioTabela = ({funcionarios}) => {
 
@@ -17,7 +18,7 @@ const FuncionarioTabela = ({funcionarios}) => {
                 funcionarios(funcionarioEditado)
             }
         })
-        .catch();
+        .catch(e=>console.log(e));
     }
 
     const deletaFuncionario = () => {
@@ -52,7 +53,7 @@ const FuncionarioTabela = ({funcionarios}) => {
                                 <td> {funcionario.cargo} </td>
                                 <td> {funcionario.contato} </td>
                                 <td> {funcionario.registro} </td>
-                                <td> <button onClick={()=> editaFuncionario}>E</button> <button onClick={()=> deletaFuncionario}>R</button> </td>
+                                <td> <button onClick={()=> editaFuncionario}>Edita</button> <button onClick={()=> deletaFuncionario}>Remover</button> </td>
                             </tr>
                     )
                 }
