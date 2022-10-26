@@ -47,7 +47,8 @@ const ProdutoCard = (props) => {
     }
 
     const deletaProduto = () => {
-        api.delete(`/produtos/delete/${produto.id}`)
+        console.log(produto.id)
+        api.delete(`/produtos/deleta/${produto.id}`)
         .then((res) => {
             if(res.status ===200){
                 props.buscaTodos();

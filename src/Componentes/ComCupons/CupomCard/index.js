@@ -47,7 +47,7 @@ const CupomCard = (props) => {
     }
 
     const deletaCupom = () => {
-        api.delete(`/cupons/delete/${cupom.id}`)
+        api.delete(`/cupons/deleta/${cupom.id}`)
         .then((res) => {
             if(res.status ===200){
                 props.buscaTodos();
