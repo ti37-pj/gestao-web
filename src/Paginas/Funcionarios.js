@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { CircularProgress } from '@mui/material';
 import FuncionarioTabela from '../Componentes/FuncionarioTabela';
-
+import api from '../api';
 import FabAdd from '../Componentes/FabAdd';
 import FuncionarioModal from '../Componentes/FuncionarioModal';
 
@@ -15,14 +15,14 @@ function Funcionarios(){
     }, [])
 
     const buscaTodos = () => {
-        axios.get("http://10.60.46.31:3001/funcionarios/busca_todos")
+        api.get("/funcionarios/busca_todos")
         .then(res => setFuncionarios(res.data))
         .catch(res => console.log(res));
     }
 
     const cadastraFuncionario = (Funcionarios) => {
         console.log(Funcionarios)
-        axios.post("http://10.60.46.31:3001/funcionarios/insere", Funcionarios)
+        api.post("/funcionarios/insere", Funcionarios)
         .then((res) => {
             if (res.status === 201 || res.status === 200) {
                 buscaTodos();

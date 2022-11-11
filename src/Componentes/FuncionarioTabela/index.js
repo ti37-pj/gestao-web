@@ -47,7 +47,7 @@ const FuncionarioTabela = ({funcionarios}) => {
             <tbody>
                 {
                     funcionarios.map(funcionario =>
-                            <tr>
+                            <tr key={funcionario.id} >
                                 <td> {funcionario.nome} </td>
                                 <td> {funcionario.usuario} </td>
                                 <td> {funcionario.cargo} </td>

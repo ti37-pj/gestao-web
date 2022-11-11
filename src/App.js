@@ -1,5 +1,4 @@
 import Produtos from "./Paginas/Produtos";
-import Cupons from "./Paginas/Cupons";
 import Funcionarios from "./Paginas/Funcionarios";
 import { BrowserRouter, Route, Routes} from "react-router-dom";
 import * as React from 'react';
@@ -18,9 +17,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
 import Home from '@mui/icons-material/Home';
 import DrawerItem from "./Componentes/DrawerItem";
-import TrendingUp from "@mui/icons-material/TrendingUp"
 import Person from "@mui/icons-material/Person";
-import Sell from "@mui/icons-material/Sell";
 import "./App.css";
 
 
@@ -137,9 +134,6 @@ const App = () => {
                             <DrawerItem link="/produtos" open={open} icon={<ShoppingCart/>} texto= "Produtos"/>
                         </List>
                         <List>
-                            <DrawerItem link="/cupons" open={open} icon={<Sell/>} texto= "Cupons"/>
-                        </List>
-                        <List>
                             <DrawerItem link="/funcionarios" open={open} icon={<Person/>} texto= "Funcioários"/>
                         </List>
                     </Drawer>
@@ -154,9 +148,6 @@ const App = () => {
                             </Routes>
                             <Routes>
                                 <Route path="/dashboard"></Route>
-                            </Routes>
-                            <Routes>
-                                <Route path="/cupons" element={<Cupons/>}></Route>
                             </Routes>
                             <Routes>
                                 <Route path="/funcionarios" element={<Funcionarios/>}></Route>

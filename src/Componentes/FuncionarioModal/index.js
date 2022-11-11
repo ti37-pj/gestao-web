@@ -31,7 +31,9 @@ const FuncionarioModal = (props) => {
     const [nome, setNome] = React.useState(props.funcionario?.nome);
     const [usuario, setUsuario] = React.useState(props.funcionario?.usuario);
     const [cargo, setCargo] = React.useState(props.funcionario?.cargo);
-    const [contato, setContato] = React.useState(props.funcionario?.contato);
+    const [telefone, setTelefone] = React.useState(props.funcionario?.telefone);
+    const [email, setEmail] = React.useState(props.funcionario?.email);
+    const [cpf, setCpf] = React.useState(props.funcionario?.cpf);
     const [senha, setSenha] = React.useState(props.funcionario?.senha);
 
 
@@ -72,10 +74,28 @@ const FuncionarioModal = (props) => {
                     <TextField 
                     sx={styleText}
                     type="text"
-                    value={contato}
-                    onChange={(e) => setContato(e.target.value)}
+                    value={telefone}
+                    onChange={(e) => setTelefone(e.target.value)}
                     id="standard-basic"
-                    label="Insira o Contato"
+                    label="Insira o Telefone"
+                    variant="standard" />
+
+                    <TextField 
+                    sx={styleText}
+                    type="text" 
+                    id="standard-basic"
+                    value={cpf}
+                    onChange={(e) => setCpf(e.target.value)}
+                    label="Insira o Cpf"
+                    variant="standard" />
+
+                    <TextField 
+                    sx={styleText}
+                    type="text" 
+                    id="standard-basic"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    label="Insira o Email"
                     variant="standard" />
     
                     <TextField 
@@ -90,7 +110,7 @@ const FuncionarioModal = (props) => {
                     <Button onClick={_event => props.onSave({
                         nome,
                         senha,
-                        contato,
+                        contato: telefone,
                         cargo,
                         usuario,
                     }) }>Salvar</Button>
