@@ -1,5 +1,6 @@
 import Produtos from "./Paginas/Produtos";
 import Funcionarios from "./Paginas/Funcionarios";
+import Pedidos from './Paginas/Pedidos'
 import { BrowserRouter, Route, Routes} from "react-router-dom";
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
@@ -15,7 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
-import Home from '@mui/icons-material/Home';
+import DetailsIcon from '@mui/icons-material/Details';
 import DrawerItem from "./Componentes/DrawerItem";
 import Person from "@mui/icons-material/Person";
 import "./App.css";
@@ -136,6 +137,9 @@ const App = () => {
                         <List>
                             <DrawerItem link="/funcionarios" open={open} icon={<Person/>} texto= "Funcioários"/>
                         </List>
+                        <List>
+                            <DrawerItem link="/pedidos" open={open} icon={<DetailsIcon/>} texto= "Pedidos"/>
+                        </List>
                     </Drawer>
                 <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                     <DrawerHeader />
@@ -153,7 +157,7 @@ const App = () => {
                                 <Route path="/funcionarios" element={<Funcionarios/>}></Route>
                             </Routes>
                             <Routes>
-                                <Route path="/vendas"></Route>
+                                <Route path="/pedidos" element={<Pedidos/>} ></Route>
                             </Routes>
                         </main>
                 </Box>

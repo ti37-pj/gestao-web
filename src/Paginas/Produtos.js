@@ -13,10 +13,10 @@ const PGProdutos = () => {
     }, [])
 
     const buscaTodos = () => {
-        api.get("/categorias/busca_todos")
+        api.get("categorias/busca_todos")
         .then(res =>{
             setCategorias(res.data)
-            api.get("/produtos/busca_todos")
+            api.get("produtos/busca_todos")
             .then(res => setProdutos(res.data))
         })
         .catch(res => console.log(res));
@@ -50,11 +50,11 @@ const PGProdutos = () => {
             {(produtos === 0) ? (
                 <CircularProgress />
             ) : (
-                    <div>
-                        <Cards>
-                            {produtos.map(produto => <ProdutoCard buscaTodos={buscaTodos} produto={produto} categorias={categorias} key={produto.id} />)}       
-                        </Cards>
-                    </div>        
+                <div>
+                    <Cards>
+                        {produtos.map(produto => <ProdutoCard buscaTodos={buscaTodos} produto={produto} categorias={categorias} key={produto.id} />)}       
+                    </Cards>
+                </div>        
             )}
 
             <FabAdd onClick={handleOpen} />
