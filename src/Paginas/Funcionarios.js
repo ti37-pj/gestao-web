@@ -40,7 +40,7 @@ function Funcionarios(){
     return(
         <div>
             <h1>Funcionários</h1>
-            {(funcionarios === 0 )?(
+            {(funcionarios == 0 )?(
                 <CircularProgress/>
             ):(
                 <FuncionarioTabela funcionarios={funcionarios} />

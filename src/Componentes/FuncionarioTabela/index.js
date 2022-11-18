@@ -8,6 +8,25 @@ const FuncionarioTabela = ({funcionarios}) => {
 
     const [modalOpen, setModalOpen] = useState(false);
 
+    const formataData = (date) => {
+        if(!date){
+            return(
+                null
+            )
+        }
+        let dataFormatada = date
+        let horas = dataFormatada.split("T")[1]
+        horas = horas.split(".")[0]
+        horas = parseInt(horas.split(":")[0])-3 + ":" + horas.split(":")[1]
+        let data = dataFormatada.split("T")[0]
+        data = data.split("-").reverse().join("/")
+        dataFormatada = data + " às " + horas
+
+        return(
+            dataFormatada
+        )
+    }
+
     const editaFuncionario = (funcionarioEditado) => {
         console.log(funcionarios)
         api.put(`/funcionarios/altera/${funcionarios.id}`, funcionarioEditado)
@@ -50,8 +69,8 @@ const FuncionarioTabela = ({funcionarios}) => {
                                 <td> {funcionario.usuario} </td>
                                 <td> {funcionario.cargo} </td>
                                 <td> {funcionario.contato} </td>
-                                <td> {funcionario.registro} </td>
-                                <td> <button onClick={()=> editaFuncionario}>Edita</button> <button onClick={()=> deletaFuncionario}>Remover</button> </td>
+                                <td> {formataData(funcionario.registro)} </td>
+                                <td> <button onClick={()=> setModalOpen(true)}>Edita</button> <button onClick={()=> deletaFuncionario}>Remover</button> </td>
                             </tr>
                     )
                 }
