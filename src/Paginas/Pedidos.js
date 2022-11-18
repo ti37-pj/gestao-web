@@ -1,5 +1,6 @@
 import React from 'react';
 import PedidoCard from '../Componentes/ComPedidos/PedidoCard';
+import api from '../api';
 
 const Pedidos = () => {
 
@@ -18,7 +19,7 @@ const Pedidos = () => {
 
     const buscaTodos = () => {
 
-        const banco = [
+         const banco = [
             {id:1, registro:"2022-11-17T14:00:00", mesa:6, observacao:"Teste", id_cliente:1, status:"aguardando", id_venda:12, produto:[{nome:"Hamburgão", quantidade:2},{nome:"batata", quantidade:1}]},
             {id:2, registro:"2022-11-17T14:00:00", mesa:3, observacao:"", id_cliente:2, status:"aguardando", id_venda:13, produto:[{nome:"Hamburgão", quantidade:2},]},
             {id:3, registro:"2022-11-17T14:00:00", mesa:5, observacao:"Testando", id_cliente:3, status:"confirmado", id_venda:14, produto:[{nome:"Hamburgão", quantidade:1},{nome:"batata", quantidade:1}]},
@@ -34,25 +35,28 @@ const Pedidos = () => {
         setPedidos(banco)
 
         // api.get("pedidos/busca_todos")
-        // .then(res => setPedido(res.data))
+        // .then(res => setPedidos(res.data))
         // .catch(res => console.log(res.data));
     }
 
     const styleColuns = {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent:'space-between',
+        justifyContent:'center',
+        textAlign:'center',
     }
 
     const styleCards = {
+        borderLeft:'1px solid black'
+    }
 
+    const styleCardsFirst = {
     }
 
     const styleCabecalho = {
-        backgroundColor:'red',
         width:'100%',
         textAlign:'center',
-        margin: 10
+        fontSize: 50,
     }
 
     return ( 
@@ -64,14 +68,8 @@ const Pedidos = () => {
             ) : (
                 <div>
                     <div style={styleColuns} >
-                        <div style={styleCabecalho} >Aguardando</div>
-                        <div style={styleCabecalho} >Confirmado</div>
-                        <div style={styleCabecalho} >Preparando</div>
-                        <div style={styleCabecalho} >Enviado</div>
-                        <div style={styleCabecalho} >Concluido</div>
-                    </div>
-                    <div style={styleColuns} >
-                        <div style={styleCards} >
+                        <div style={styleCardsFirst} >
+                            <div style={styleCabecalho} >Aguardando</div>
                             {pedidos.map(pedido =>{
                                 
                                 if(
@@ -83,6 +81,7 @@ const Pedidos = () => {
                             }
                         </div>
                         <div style={styleCards} >
+                            <div style={styleCabecalho} >Confirmado</div>
                             {pedidos.map(pedido =>{
                                 if(
                                 pedido.status == 'confirmado'
@@ -93,6 +92,7 @@ const Pedidos = () => {
                             }
                         </div>
                         <div style={styleCards} >
+                            <div style={styleCabecalho} >Preparando</div>
                             {pedidos.map(pedido =>{
                                 if(
                                 pedido.status == 'preparando'
@@ -103,6 +103,7 @@ const Pedidos = () => {
                             }
                         </div>
                         <div style={styleCards} >
+                            <div style={styleCabecalho} >Enviado</div>
                             {pedidos.map(pedido =>{
                                 if(
                                 pedido.status == 'enviado'
@@ -113,6 +114,7 @@ const Pedidos = () => {
                             }
                         </div>
                         <div style={styleCards} >
+                            <div style={styleCabecalho} >Concluido</div>
                             {pedidos.map(pedido =>{
                                 if(
                                 pedido.status == 'concluido'

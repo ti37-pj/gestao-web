@@ -34,7 +34,7 @@ const FuncionarioTabela = ({funcionarios}) => {
 
     return(
         <table>
-            <thead>
+            <tbody>
                 <tr>
                     <td>Nome</td>
                     <td>Usuário</td>
@@ -43,8 +43,6 @@ const FuncionarioTabela = ({funcionarios}) => {
                     <td>Registro</td>
                     <td>Ações</td>
                 </tr>
-            </thead>
-            <tbody>
                 {
                     funcionarios.map(funcionario =>
                             <tr key={funcionario.id} >

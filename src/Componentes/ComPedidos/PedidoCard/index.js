@@ -1,11 +1,12 @@
 import React from "react";
 import Card from '@mui/material/Card';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CardActions from '@mui/material/CardActions';
 import {CardContent, CardHeader, Typography, Button } from "@mui/material";
-import { borderColor } from "@mui/system";
 
 const PedidoCard = (props) => {
     const pedido = props.pedido;
+    const produto = pedido.produto
 
         const formataData = (date) => {
             if(!date){
@@ -23,15 +24,27 @@ const PedidoCard = (props) => {
             )
         }
 
+    const styleBtn = {
+        display:'flex',
+        justifyContent:'flex-end',
+        width:'100%',
+        fontSize:25,
+    }
+
     const styleRegistro = {
-        fontSize: 10,
+        fontSize: 25,
     }
     const styleCard = {
         width:'250px',
         margin:20,
     }
+    const styleText = {
+        fontSize:20
+    }
     const styleProduto = {
-        display:'flex'
+        display:'flex',
+        textAlign:'center',
+        justifyContent:'center',
     }
 
     const mudaColuna = () =>{
@@ -58,25 +71,29 @@ const PedidoCard = (props) => {
             <Card style={styleCard} >
                 <CardHeader title= {`Mesa: ${pedido.mesa}`}/>
                 <CardContent>
-                    <Typography>
-                        Status:{pedido.status}
+                    <Typography style={styleText}>
+                        Status: {pedido.status}
                     </Typography>
-                    <Typography>
-                        Observação:{pedido.observacao}
+                    <Typography style={styleText}>
+                        Observação: {pedido.observacao}
                     </Typography>
-                    Produtos:{pedido.produto.map(p => {
-                            //console.log(p)
-                            return<div style={styleProduto} >
-                                <Typography>{p.quantidade}x</Typography>
-                                <Typography>{p.nome}</Typography>
-                            </div>
-                        })}
+                    <Typography style={styleText}>
+                        Produtos:{produto.map(p => {
+                                //console.log(p)
+                                return<div style={styleProduto}>
+                                    <Typography style={styleText}>{p.quantidade}x</Typography>
+                                    <Typography style={styleText}>{p.nome}</Typography>
+                                </div>
+                            })}
+                    </Typography>
                     <Typography sx={styleRegistro}>
                         {formataData(pedido.registro)}
                     </Typography>    
                 </CardContent>
                 <CardActions>
-                    <Button onClick={() => mudaColuna()} > --- </Button>
+                    <div style={styleBtn} >
+                        <Button onClick={() => mudaColuna()}> <ArrowForwardIcon/> </Button>
+                    </div>
                 </CardActions>
             </Card>
         </div>

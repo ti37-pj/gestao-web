@@ -110,7 +110,9 @@ const FuncionarioModal = (props) => {
                     <Button onClick={_event => props.onSave({
                         nome,
                         senha,
-                        contato: telefone,
+                        telefone,
+                        email,
+                        cpf,
                         cargo,
                         usuario,
                     }) }>Salvar</Button>
