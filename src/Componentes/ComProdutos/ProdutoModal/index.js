@@ -108,14 +108,14 @@ const ProdutoModal = (props) => {
 
                             <FormControl sx={styleText}>
                                 <InputLabel id="label-categoria">Categoria</InputLabel>
-                                    <Select
-                                        labelId="label-categoria"
-                                        label="Categoria"
-                                        onChange={handleChange}
-                                        value={id_categoria}
-                                    >
-                                        {props.categorias?.map(categoria => <MenuItem key={categoria.id} value={categoria.id}>{categoria.nome}</MenuItem>)}
-                                    </Select>
+                                <Select
+                                    labelId="label-categoria"
+                                    label="Categoria"
+                                    onChange={handleChange}
+                                    value={id_categoria}
+                                >
+                                    {props.categorias?.map(categoria => <MenuItem key={categoria.id} value={categoria.id}>{categoria.nome}</MenuItem>)}
+                                </Select>
                             </FormControl>
                         </div>
                         <div>

@@ -100,6 +100,7 @@ const PedidoCard = (props) => {
             <Card style={styleCard} >
                 <CardHeader title= {`Mesa: ${pedido.mesa}`}/>
                 <CardContent>
+                    <Typography>Número do Pedido: {pedido.id}</Typography>
                     <Typography style={styleText}>
                         Status: {pedido.status}
                     </Typography>
