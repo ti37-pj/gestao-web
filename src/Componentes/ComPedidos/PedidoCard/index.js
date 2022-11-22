@@ -12,6 +12,12 @@ const PedidoCard = (props) => {
     // console.log(produtos)
     // console.log(pedido)
 
+    React.useEffect(()=>{
+        // console.log('useEfect')
+        // console.log()
+        props.buscaTodos();
+    }, [])
+
     const formataData = (date) => {
         if(!date){
             return(
@@ -61,18 +67,26 @@ const PedidoCard = (props) => {
             default: pedido.status = 'concluido';
         }
         const novosPedidos = props.pedidos.map(p => {
-            if(p.id == pedido.id){
-                p.status = pedido.status
+
+            const bodyPedido = {
+                observacao:pedido.observacao,
+                mesa:pedido.mesa,
+                id_cliente:pedido.id_cliente,
+                status:pedido.status
+            }
+            
+            if(p.id == pedido.id) {
+                api.put(`pedidos/altera/${pedido.id}`,bodyPedido)
+                .then(res => {
+                    props.buscaTodos()
+                    console.log(res)
+                } )
+                .catch(res => {
+                    console.log(res.data)
+                })
             }
             return p
         })
-        console.log(novosPedidos)
-        api.put(`pedidos/altera/${pedido.id}`)
-            .then((res) => {
-                if(res.status == 200){pedido.status = novosPedidos.status}
-            } )
-            .catch(res => console.log(res.data))
-
     }
 
     // api.put(`pedidos/altera/${pedido.id}`)

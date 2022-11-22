@@ -9,6 +9,8 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import api from '../../../api';
 
 const ProdutoCard = (props) => {
+
+
     const [produto, setProduto] = useState(props.produto);
     const [categorias, setCategorias] = useState(props.categorias);
 

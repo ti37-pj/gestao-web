@@ -8,37 +8,22 @@ const Pedidos = () => {
         buscaTodos();
     }, [])
 
-    const [pedidos, setPedidos] = React.useState([]);
-    console.log(pedidos)
+    let timerId = 0
 
-    //aguardando
-    //confirmado
-    //preparando
-    //enviado
-    //concluido
+    const [pedidos, setPedidos] = React.useState([]);
+    //console.log(pedidos)
 
     const buscaTodos = () => {
-
-        // const banco = [
-        //     {id:1, registro:"2022-11-17T14:00:00", mesa:6, observacao:"Teste", id_cliente:1, status:"aguardando", id_venda:12, produto:[{nome:"Hamburgão", quantidade:2},{nome:"batata", quantidade:1}]},
-        //     {id:2, registro:"2022-11-17T14:00:00", mesa:3, observacao:"", id_cliente:2, status:"aguardando", id_venda:13, produto:[{nome:"Hamburgão", quantidade:2},]},
-        //     {id:3, registro:"2022-11-17T14:00:00", mesa:5, observacao:"Testando", id_cliente:3, status:"confirmado", id_venda:14, produto:[{nome:"Hamburgão", quantidade:1},{nome:"batata", quantidade:1}]},
-        //     {id:4, registro:"2022-11-17T14:00:00", mesa:4, observacao:"", id_cliente:4, status:"confirmado", id_venda:15, produto:[{nome:"Hamburgão", quantidade:1},{nome:"coca", quantidade:1}]},
-        //     {id:5, registro:"2022-11-17T14:00:00", mesa:2, observacao:"Testarei", id_cliente:1, status:"preparando", id_venda:16, produto:[{nome:"Hamburgão", quantidade:1},{nome:"batata", quantidade:3}]},
-        //     {id:6, registro:"2022-11-17T14:00:00", mesa:1, observacao:"", id_cliente:6, status:"preparando", id_venda:17, produto:[{nome:"Cerveja", quantidade:2},{nome:"batata", quantidade:2}]},
-        //     {id:7, registro:"2022-11-17T14:00:00", mesa:6, observacao:"Testarai", id_cliente:1, status:"enviado", id_venda:18, produto:[{nome:"Hamburgão", quantidade:2},{nome:"batata", quantidade:1}]},
-        //     {id:8, registro:"2022-11-17T14:00:00", mesa:5, observacao:"", id_cliente:3, status:"enviado", id_venda:19, produto:[{nome:"Hamburgão", quantidade:2},{nome:"batata", quantidade:1}]},
-        //     {id:9, registro:"2022-11-17T14:00:00", mesa:6, observacao:"Testaraivos", id_cliente:1, status:"concluido", id_venda:20, produto:[{nome:"Hamburgão", quantidade:2},{nome:"batata", quantidade:1}]},
-        //     {id:10, registro:"2022-11-17T14:00:00", mesa:4, observacao:"", id_cliente:4, status:"concluido", id_venda:21, produto:[{nome:"Hamburgão", quantidade:2},{nome:"batata", quantidade:1}]},
-        // ]
-
-        // setPedidos(banco)
-
+        clearTimeout(timerId)
         api.get(`pedidos/busca_todos_hoje`)
         .then(res => {
             setPedidos(res.data)
+            //console.log(res.data)
         })
-        .catch(res => console.log(res.data));
+        .catch(res => console.log(res.data))
+        .finally(()=>{
+            timerId = setTimeout(buscaTodos, 10000)
+        });
     }
 
     const styleColuns = {
@@ -77,7 +62,7 @@ const Pedidos = () => {
                                 if(
                                 pedido.status == 'aguardando'
                                 ){
-                                    return<PedidoCard pedidos={pedidos} setPedidos={setPedidos} pedido={pedido} key={pedido.id}/>
+                                    return<PedidoCard buscaTodos={buscaTodos} pedidos={pedidos} setPedidos={setPedidos} pedido={pedido} key={pedido.id}/>
                                 }
                             })
                             }
@@ -88,7 +73,7 @@ const Pedidos = () => {
                                 if(
                                 pedido.status == 'confirmado'
                                 ){
-                                    return<PedidoCard pedido={pedido} key={pedido.id}/>  
+                                    return<PedidoCard buscaTodos={buscaTodos} pedidos={pedidos} setPedidos={setPedidos} pedido={pedido} key={pedido.id}/>  
                                 }
                             })
                             }
@@ -99,7 +84,7 @@ const Pedidos = () => {
                                 if(
                                 pedido.status == 'preparando'
                                 ){
-                                    return<PedidoCard pedido={pedido} key={pedido.id}/>  
+                                    return<PedidoCard buscaTodos={buscaTodos} pedidos={pedidos} setPedidos={setPedidos} pedido={pedido} key={pedido.id}/>  
                                 }
                             })
                             }
@@ -110,7 +95,7 @@ const Pedidos = () => {
                                 if(
                                 pedido.status == 'enviado'
                                 ){
-                                    return<PedidoCard pedido={pedido} key={pedido.id}/>  
+                                    return<PedidoCard buscaTodos={buscaTodos} pedidos={pedidos} setPedidos={setPedidos} pedido={pedido} key={pedido.id}/>  
                                 }
                             })
                             }
@@ -121,7 +106,7 @@ const Pedidos = () => {
                                 if(
                                 pedido.status == 'concluido'
                                 ){
-                                    return<PedidoCard pedido={pedido} key={pedido.id}/>  
+                                    return<PedidoCard buscaTodos={buscaTodos} pedidos={pedidos} setPedidos={setPedidos} pedido={pedido} key={pedido.id}/>  
                                 }
                             })
                             }
