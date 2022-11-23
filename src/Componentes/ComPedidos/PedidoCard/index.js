@@ -89,12 +89,6 @@ const PedidoCard = (props) => {
         })
     }
 
-    // api.put(`pedidos/altera/${pedido.id}`)
-    //   .then((res) => {
-    //      p.status = pedido.status
-    //    } )
-    //   .catch(res => console.log(res.data))
-
     return(
         <div>
             <Card style={styleCard} >
@@ -119,11 +113,13 @@ const PedidoCard = (props) => {
                         {formataData(pedido.registro)}
                     </Typography>    
                 </CardContent>
-                <CardActions>
-                    <div style={styleBtn} >
-                        <Button onClick={() => mudaColuna()}> <ArrowForwardIcon/> </Button>
-                    </div>
-                </CardActions>
+                {props.concluido != true && 
+                    <CardActions>
+                        <div style={styleBtn} >
+                            <Button onClick={() => mudaColuna()}> <ArrowForwardIcon/> </Button>
+                        </div>
+                    </CardActions>
+                }
             </Card>
         </div>
     

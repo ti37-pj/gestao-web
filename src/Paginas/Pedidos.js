@@ -77,7 +77,7 @@ const Pedidos = () => {
                     labelId='label-Filtro'
                     label='Filtro'
                     onChange={mudaFiltro}
-                    value={VISAO_GERENCIA}
+                    value={visao}
                 >
                     <MenuItem value={VISAO_GERENCIA}>Gerencia</MenuItem>
                     <MenuItem value={VISAO_COZINHA}>Cozinha</MenuItem>
@@ -153,7 +153,7 @@ const Pedidos = () => {
                                     if(
                                     pedido.status == 'concluido'
                                     ){
-                                        return<PedidoCard buscaTodos={buscaTodos} pedidos={pedidos} setPedidos={setPedidos} pedido={pedido} key={pedido.id}/>  
+                                        return<PedidoCard buscaTodos={buscaTodos} pedidos={pedidos} setPedidos={setPedidos} pedido={pedido} key={pedido.id} concluido={true} />  
                                     }
                                 })
                             }

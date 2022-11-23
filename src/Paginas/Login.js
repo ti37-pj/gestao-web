@@ -1,7 +1,12 @@
 //localStorage
+import React from 'react';
 
 const PGLogin = () => {
-    return (  );
+    return ( 
+        <div>
+            Login
+        </div>
+     );
 }
  
 export default PGLogin;

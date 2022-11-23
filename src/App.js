@@ -130,7 +130,7 @@ const App = () => {
                             <IconButton onClick={handleDrawerClose}>
                                 {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                             </IconButton>
-                        </DrawerHeader>              
+                        </DrawerHeader>          
                         <List>
                             <DrawerItem link="/produtos" open={open} icon={<ShoppingCart/>} texto= "Produtos"/>
                         </List>
